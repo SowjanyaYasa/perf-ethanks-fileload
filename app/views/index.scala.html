@@ -1,0 +1,16 @@
+@(message: String)
+
+@main("Welcome to Play") {
+
+    @helper.form(action = routes.Application.upload, 'enctype -> "multipart/form-data") {
+
+        First choose a file to upload:
+        <input type="file" name="picture" value="Choose your file">
+
+        <p>
+            <input type="submit" value="upload">
+        </p>
+
+    }
+
+}
