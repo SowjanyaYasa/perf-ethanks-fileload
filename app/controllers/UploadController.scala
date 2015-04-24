@@ -20,7 +20,7 @@ class UploadController @Inject() (uploadService: UploadService)
       if(isSupportedFormat(filename))
       {
 
-        picture.ref.moveTo(new File(s"/Users/sowjanya.yasa/uploadedFiles/$filename"))
+        //picture.ref.moveTo(new File(s"/Users/sowjanya.yasa/uploadedFiles/$filename"))
         uploadService.readExcel(filename);
         Ok("File uploaded")
       }
