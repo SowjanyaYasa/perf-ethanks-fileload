@@ -13,5 +13,8 @@ libraryDependencies ++= Seq(
   "org.apache.poi" % "poi-ooxml" % "3.9",
   "com.google.inject" % "guice" % "3.0",
   "net.codingwell" % "scala-guice_2.11" % "4.0.0-beta4",
-  "com.google.guava" % "guava" % "12.0"
+  "com.google.guava" % "guava" % "12.0",
+  "com.rabbitmq" % "amqp-client" % "3.3.4"
 )
+
+
