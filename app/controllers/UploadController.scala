@@ -13,6 +13,8 @@ class UploadController @Inject() (uploadService: UploadService)
 
   def upload = Action(parse.multipartFormData) { request =>
     request.body.file("picture").map { picture =>
+
+      println("In upload method....")
       import java.io.File
       val filename = picture.filename
       val contentType = picture.contentType
