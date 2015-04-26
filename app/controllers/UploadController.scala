@@ -14,15 +14,11 @@ class UploadController @Inject() (uploadService: UploadService)
   def upload = Action(parse.multipartFormData) { request =>
     request.body.file("picture").map { picture =>
 
-      println("In upload method....")
       import java.io.File
       val filename = picture.filename
       val contentType = picture.contentType
-  println(isSupportedFormat(filename))
       if(isSupportedFormat(filename))
       {
-
-        //picture.ref.moveTo(new File(s"/Users/sowjanya.yasa/uploadedFiles/$filename"))
         uploadService.readExcel(filename);
         Ok("File uploaded")
       }

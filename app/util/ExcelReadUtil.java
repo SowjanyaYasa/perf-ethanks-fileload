@@ -56,6 +56,7 @@ public class ExcelReadUtil {
 
 
     public void getIds(String fileName){
+        System.out.println("in get idsss");
         try{
             for(int i=0; i<10; i++)
             {
@@ -72,12 +73,14 @@ public class ExcelReadUtil {
     {
         String uri = System.getenv("CLOUDAMQP_URL");
          if (uri == null)
-             uri = "amqp://ifyuypdy:r7OnVUkJVHdyphz5WjVnQ8g9ut2LA9yE@tiger.cloudamqp.com/ifyuypdy";
+            // uri = "amqp://ifyuypdy:r7OnVUkJVHdyphz5WjVnQ8g9ut2LA9yE@tiger.cloudamqp.com/ifyuypdy";
+             uri = "amqp://performance:performance@rabbitmq.dev.octanner.com:5672/ntp";
 
-         ConnectionFactory factory = new ConnectionFactory();
+        System.out.println("uri ::  "+uri);
+        ConnectionFactory factory = new ConnectionFactory();
          factory.setUri(uri);
          factory.setRequestedHeartbeat(30);
-         factory.setConnectionTimeout(30);
+         factory.setConnectionTimeout(300);
          Connection connection = factory.newConnection();
          Channel channel = connection.createChannel();
 
