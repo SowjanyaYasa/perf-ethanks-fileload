@@ -7,7 +7,7 @@ import util.ExcelReadUtil
 
 class UploadService @Inject() (excelReadUtil: ExcelReadUtil){
 
-  def readExcel(fileName: String) = {
-    excelReadUtil.getIds(fileName)
+  def readExcel(file: File) = {
+    excelReadUtil.getIds(file)
   }
 }

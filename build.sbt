@@ -1,4 +1,4 @@
-name := """upload"""
+name := """perf-ethanks-fileload"""
 
 version := "1.0-SNAPSHOT"
 

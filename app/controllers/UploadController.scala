@@ -19,7 +19,7 @@ class UploadController @Inject() (uploadService: UploadService)
       val contentType = picture.contentType
       if(isSupportedFormat(filename))
       {
-        uploadService.readExcel(filename);
+        uploadService.readExcel(picture.ref.file);
         Ok("File uploaded")
       }
       else
