@@ -4,21 +4,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
 import org.apache.poi.ss.usermodel.*;
-import service.MessageListener;
+import service.BulkEthanksQueueListener;
 
 
 public class ExcelReadUtil {
 
     static{
-        MessageListener listener = new MessageListener();
-        listener.start();
+        for(int i=0; i<3; i++)
+        {
+            BulkEthanksQueueListener listener = new BulkEthanksQueueListener();
+            listener.setListenerNumber(i);
+            listener.start();
+
+        }
     }
 
 
@@ -62,7 +65,6 @@ public class ExcelReadUtil {
         System.out.println("inside publishUniqueId  "+uniqueId);
         String uri = System.getenv("CLOUDAMQP_URL");
          if (uri == null)
-            // uri = "amqp://ifyuypdy:r7OnVUkJVHdyphz5WjVnQ8g9ut2LA9yE@tiger.cloudamqp.com/ifyuypdy";
              uri = "amqp://performance:performance@rabbitmq.dev.octanner.com:5672/ntp";
 
         System.out.println("uri ::  "+uri);
@@ -75,8 +77,8 @@ public class ExcelReadUtil {
         System.out.println("connection created");
          Channel channel = connection.createChannel();
         System.out.println("channel created");
-         channel.queueDeclare("hello", false, false, false, null);
-         channel.basicPublish("", "hello", null, uniqueId.getBytes());
+         channel.queueDeclare(BulkEthanksQueueListener.BULK_ETHANKS_QUEUE, false, false, false, null);
+         channel.basicPublish("", BulkEthanksQueueListener.BULK_ETHANKS_QUEUE, null, uniqueId.getBytes());
         System.out.println("basic publish completed");
         channel.close();
         System.out.println("clannel closed");
